@@ -1,0 +1,37 @@
+// Schéma Prisma — PRODUCTION avec Neon (PostgreSQL)
+//
+// Mode d'emploi (détails dans README.md) :
+//   1. Copie ce fichier dans prisma/schema.prisma (ou remplace simplement
+//      `provider = "sqlite"` par `provider = "postgresql"`).
+//   2. Dans .env : DATABASE_URL = ta chaîne de connexion Neon.
+//      — Pour les commandes de migration (db push / migrate) : utilise l'URL
+//        DIRECTE (sans « -pooler »).
+//      — À l'exécution (Vercel) : utilise l'URL « -pooler » (PgBouncer) pour
+//        le pooling de connexions serverless.
+//   3. pnpm prisma generate && pnpm db:push
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Messages reçus depuis le formulaire de contact du portfolio
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  /// Lu par l'administrateur (dashboard /admin)
+  read      Boolean  @default(false)
+  /// Archivé (masqué de la boîte de réception, conservé en base)
+  archived  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([read, archived])
+}

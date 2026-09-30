@@ -1,0 +1,27 @@
+# Portfolio de Noé — https://noe.dev
+# L'espace d'administration n'est jamais indexé (protégé par session + noindex).
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api/admin
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api/admin
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /admin
+Disallow: /api/admin
+
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /admin
+Disallow: /api/admin
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/admin

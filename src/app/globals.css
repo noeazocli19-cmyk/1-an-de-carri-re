@@ -1,0 +1,227 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*
+ * Palette du portfolio de Noé — tirée du logo officiel
+ * Deux thèmes (switch manuel via next-themes, classe .dark sur <html>) :
+ * — Thème sombre (défaut, couleurs du logo) : noir #0A0A0A, vert #22C55E, blanc #F5F5F5
+ * — Thème clair : blanc #FFFFFF, encre #111111, vert #16A34A, gris #808080, gris clair #F5F5F5
+ */
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #16a34a;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #111111;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b6b6b;
+  --accent: #f0f0f0;
+  --accent-foreground: #111111;
+  --destructive: #dc2626;
+  --border: #e5e5e5;
+  --input: #d4d4d4;
+  --ring: #16a34a;
+  --chart-1: #16a34a;
+  --chart-2: #4ade80;
+  --chart-3: #22c55e;
+  --chart-4: #808080;
+  --chart-5: #d4d4d4;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #16a34a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0f0f0;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #16a34a;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+  --card: #111111;
+  --card-foreground: #f5f5f5;
+  --popover: #141414;
+  --popover-foreground: #f5f5f5;
+  --primary: #22c55e;
+  --primary-foreground: #0a0a0a;
+  --secondary: #161616;
+  --secondary-foreground: #f5f5f5;
+  --muted: #161616;
+  --muted-foreground: #8c8c8c;
+  --accent: #1a1a1a;
+  --accent-foreground: #f5f5f5;
+  --destructive: #ef4444;
+  --border: #232323;
+  --input: #2a2a2a;
+  --ring: #22c55e;
+  --chart-1: #22c55e;
+  --chart-2: #4ade80;
+  --chart-3: #16a34a;
+  --chart-4: #8c8c8c;
+  --chart-5: #2a2a2a;
+  --sidebar: #111111;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #22c55e;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #232323;
+  --sidebar-ring: #22c55e;
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    /* Évite l'avertissement dev de framer-motion (useScroll target + scroll window) */
+    position: relative;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  /* Scrollbar sobre, dans le thème actif */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--input);
+    border-radius: 8px;
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Petit label éditorial au-dessus des titres de section */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-primary;
+  }
+
+  /* Trait de séparation éditorial */
+  .rule {
+    @apply h-px w-full bg-border;
+  }
+  /* Soulignement animé pour les liens inline */
+  .link-underline {
+    @apply relative inline-flex items-center gap-1.5 text-primary transition-colors;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-100 bg-primary transition-transform duration-300;
+  }
+  /* Dégradé du logo, appliqué au texte */
+  .text-gradient {
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 45%, #16a34a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Dégradé du logo, appliqué en fond */
+  .bg-gradient-green {
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 45%, #16a34a 100%);
+  }
+  /* Halo vert discret, hérité de la luminescence du N */
+  .glow-green {
+    box-shadow:
+      0 0 24px rgba(34, 197, 94, 0.12),
+      0 0 64px rgba(34, 197, 94, 0.06);
+  }
+  /* Surface légèrement élevée pour les cartes sur fond noir */
+  .surface {
+    @apply bg-card border border-border;
+  }
+}
+
+/*
+ * Écran d'intro (IntroSplash) — piloté par le script inline de layout.tsx :
+ * — html.intro-done : intro déjà vue pendant la session → splash masqué
+ *   instantanément avant le premier rendu (aucun flash).
+ * — html.intro-pending : première visite → splash affiché, scroll verrouillé
+ *   jusqu'à la fin de l'animation.
+ */
+html.intro-done .intro-splash {
+  display: none !important;
+}
+html.intro-pending,
+html.intro-pending body {
+  overflow: hidden !important;
+}
