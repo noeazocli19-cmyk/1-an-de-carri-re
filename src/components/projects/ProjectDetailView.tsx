@@ -16,6 +16,7 @@ import { Reveal } from "@/components/shared/Reveal";
 import { TechList } from "@/components/shared/TechList";
 import { usePortfolio } from "@/components/portfolio/portfolio-context";
 import { getNextProject, getProjectBySlug } from "@/data/projects";
+import type { Project } from "@/types";
 
 interface ContentSection {
   number: string;
@@ -29,6 +30,39 @@ interface ContentSection {
 /** Paragraphe de corps de section. */
 function SectionParagraph({ children }: { children: ReactNode }) {
   return <p className="text-base leading-relaxed text-muted-foreground">{children}</p>;
+}
+
+function ProjectLinks({
+  project,
+  layout = "row",
+}: {
+  project: Project;
+  layout?: "row" | "column";
+}) {
+  if (!project.demoUrl && !project.githubUrl) return null;
+
+  const buttonClassName = layout === "column" ? "min-h-11 w-full" : "min-h-11 flex-1";
+
+  return (
+    <div className={layout === "column" ? "flex flex-col gap-2" : "flex gap-2"}>
+      {project.demoUrl && (
+        <Button asChild variant="outline" size="sm" className={buttonClassName}>
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+            <ExternalLink aria-hidden="true" />
+            Voir la démo
+          </a>
+        </Button>
+      )}
+      {project.githubUrl && (
+        <Button asChild variant="outline" size="sm" className={buttonClassName}>
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github aria-hidden="true" />
+            Code source
+          </a>
+        </Button>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -226,6 +260,11 @@ export default function ProjectDetailView({ slug }: { slug: string }) {
         <p className="mt-4 text-lg text-muted-foreground">{project.tagline}</p>
       </div>
 
+      {/* Les liens restent accessibles sans la colonne latérale sur mobile. */}
+      <div className="mt-6 max-w-xl lg:hidden">
+        <ProjectLinks project={project} />
+      </div>
+
       {/* Couverture */}
       <div className="relative mt-10 aspect-[21/10] overflow-hidden rounded-2xl border border-border bg-muted">
         <Image
@@ -267,32 +306,7 @@ export default function ProjectDetailView({ slug }: { slug: string }) {
 
             {/* Liens externes — seulement si présents dans les données */}
             {(project.demoUrl || project.githubUrl) && (
-              <div className="flex flex-col gap-2">
-                {project.demoUrl && (
-                  <Button asChild variant="outline" size="sm" className="w-full">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink aria-hidden="true" />
-                      Voir la démo
-                    </a>
-                  </Button>
-                )}
-                {project.githubUrl && (
-                  <Button asChild variant="outline" size="sm" className="w-full">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github aria-hidden="true" />
-                      Code source
-                    </a>
-                  </Button>
-                )}
-              </div>
+              <ProjectLinks project={project} layout="column" />
             )}
           </div>
         </aside>

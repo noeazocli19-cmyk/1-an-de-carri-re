@@ -19,8 +19,7 @@ const NAV_ITEMS = [
 /**
  * En-tête de navigation.
  * — Desktop (md+) : logo, liens texte, thème + CTA « Me contacter ».
- * — Mobile : logo + thème uniquement ; les liens vivent dans la barre
- *   fixe en bas (MobileTabBar), en libellés texte.
+ * — Mobile : logo + thème ; les liens avec icônes vivent dans la barre fixe en bas.
  */
 export function Navigation() {
   const { view, navigate } = usePortfolio();
@@ -128,7 +127,7 @@ export function Navigation() {
         </nav>
       </header>
 
-      {/* Navigation mobile fixée en bas (libellés texte) */}
+      {/* Navigation mobile fixée en bas */}
       <MobileTabBar />
     </>
   );

@@ -26,8 +26,8 @@ interface ProjectCardProps {
 /**
  * Carte projet éditoriale : couverture, méta (numéro, période, catégorie),
  * titre, accroche, stack et appel à l'action.
- * Toute la carte est cliquable à la souris ; le titre est un vrai <button>
- * pour rester navigable au clavier — le bouton ne couvre que le titre.
+ * L'image, le titre et l'appel à l'action sont des commandes explicites,
+ * adaptées au toucher et au clavier.
  */
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const { navigate } = usePortfolio();
@@ -36,13 +36,15 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <article
-      onClick={openProject}
-      className={cn("group cursor-pointer", projectSpanBySize[project.size])}
+      className={cn("group", projectSpanBySize[project.size])}
     >
       {/* Couverture */}
-      <div
+      <button
+        type="button"
+        onClick={openProject}
+        aria-label={`Ouvrir le projet ${project.title}`}
         className={cn(
-          "relative overflow-hidden rounded-xl border border-border bg-muted",
+          "relative block w-full overflow-hidden rounded-xl border border-border bg-muted text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
           isLarge ? "aspect-[16/10]" : "aspect-[4/3]"
         )}
       >
@@ -53,7 +55,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
-      </div>
+      </button>
 
       {/* Méta : numéro éditorial, période honnête, catégorie */}
       <div className="mt-5 flex items-center gap-3">
@@ -86,14 +88,18 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
       <TechList items={project.technologies} className="mt-3.5" />
 
-      {/* Appel à l'action — décoratif, la carte entière est cliquable */}
-      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+      {/* Appel à l'action */}
+      <button
+        type="button"
+        onClick={openProject}
+        className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+      >
         Voir le projet
         <ArrowRight
           aria-hidden="true"
           className="h-4 w-4 transition-transform group-hover:translate-x-1"
         />
-      </span>
+      </button>
     </article>
   );
 }
