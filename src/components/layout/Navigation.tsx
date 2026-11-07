@@ -90,7 +90,7 @@ export function Navigation() {
                     onClick={() => go(item.name)}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                      "relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-[color,background-color] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
                       active
                         ? "font-medium text-foreground"
                         : "text-muted-foreground hover:text-foreground"

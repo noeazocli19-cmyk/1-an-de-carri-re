@@ -51,7 +51,7 @@ export function MobileTabBar() {
                 onClick={() => navigate({ name: item.name })}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative flex min-h-[60px] w-full flex-col items-center justify-center gap-1 whitespace-nowrap px-0.5 py-2 text-[10px] leading-none transition-colors duration-200 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-primary active:scale-[0.97]",
+                  "relative flex min-h-[60px] w-full flex-col items-center justify-center gap-1 whitespace-nowrap px-0.5 py-2 text-[10px] leading-none transition-[color,transform] duration-200 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-primary active:scale-[0.97]",
                   active
                     ? "font-medium text-primary"
                     : "text-muted-foreground hover:text-foreground"

@@ -53,7 +53,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           alt={`Aperçu du projet ${project.title}`}
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.03]"
         />
       </button>
 

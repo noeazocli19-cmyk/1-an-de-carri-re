@@ -56,10 +56,10 @@ function ViewRouter() {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={viewKey}
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        exit={{ opacity: 0, y: -6 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
       >
         {content}
       </motion.div>
