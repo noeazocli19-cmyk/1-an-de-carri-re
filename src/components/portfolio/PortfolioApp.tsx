@@ -10,6 +10,7 @@ import HomeView from "@/components/home/HomeView";
 import AboutView from "@/components/about/AboutView";
 import ParcoursView from "@/components/parcours/ParcoursView";
 import ProjectsView from "@/components/projects/ProjectsView";
+import PricingView from "@/components/pricing/PricingView";
 import ProjectDetailView from "@/components/projects/ProjectDetailView";
 import NotesView from "@/components/notes/NotesView";
 import NoteDetailView from "@/components/notes/NoteDetailView";
@@ -29,6 +30,8 @@ function ViewRouter() {
         return <ParcoursView />;
       case "projets":
         return <ProjectsView />;
+      case "tarifs":
+        return <PricingView />;
       case "projet":
         return <ProjectDetailView slug={view.slug} />;
       case "notes":

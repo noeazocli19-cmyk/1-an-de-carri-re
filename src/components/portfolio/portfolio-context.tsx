@@ -40,6 +40,7 @@ function viewFromUrl(url: URL): View {
     name === "a-propos" ||
     name === "parcours" ||
     name === "projets" ||
+    name === "tarifs" ||
     name === "notes" ||
     name === "contact"
   ) {

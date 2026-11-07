@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { label: "À propos", name: "a-propos" },
   { label: "Parcours", name: "parcours" },
   { label: "Projets", name: "projets" },
+  { label: "Tarifs", name: "tarifs" },
   { label: "Notes", name: "notes" },
   { label: "Contact", name: "contact" },
 ] as const;

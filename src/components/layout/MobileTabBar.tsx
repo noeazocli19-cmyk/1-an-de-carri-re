@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   BriefcaseBusiness,
   FolderOpen,
+  BadgeEuro,
   House,
   Mail,
   NotebookText,
@@ -16,6 +17,7 @@ const NAV_ITEMS = [
   { label: "À propos", name: "a-propos", icon: UserRound },
   { label: "Parcours", name: "parcours", icon: BriefcaseBusiness },
   { label: "Projets", name: "projets", icon: FolderOpen },
+  { label: "Tarifs", name: "tarifs", icon: BadgeEuro },
   { label: "Notes", name: "notes", icon: NotebookText },
   { label: "Contact", name: "contact", icon: Mail },
 ] as const;

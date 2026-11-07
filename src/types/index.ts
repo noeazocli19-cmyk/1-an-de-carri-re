@@ -7,6 +7,7 @@ export type ViewName =
   | "a-propos"
   | "parcours"
   | "projets"
+  | "tarifs"
   | "notes"
   | "contact";
 
