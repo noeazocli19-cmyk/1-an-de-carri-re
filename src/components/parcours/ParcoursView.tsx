@@ -12,21 +12,20 @@ import { Timeline } from "./Timeline";
 export default function ParcoursView() {
   return (
     <Container className="pt-12 md:pt-16">
-      {/* En-tête centré */}
-      <Reveal className="mx-auto flex max-w-2xl flex-col items-center text-center">
-        <span className="eyebrow">Parcours</span>
-        <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-          Un an à construire, étape par étape.
-        </h2>
-        <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-          D'octobre 2025 à aujourd'hui : chaque étape est réelle, documentée et
-          reliée aux projets que j'ai construits. Le scroll raconte la
-          progression.
+      <Reveal className="grid items-end gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+        <div>
+          <span className="eyebrow">Parcours</span>
+          <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-[1.06] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            Mon parcours, étape par étape.
+          </h2>
+        </div>
+        <p className="max-w-xl leading-relaxed text-muted-foreground md:justify-self-end">
+          D’octobre 2025 à aujourd’hui : les étapes qui ont construit ma façon de concevoir et de
+          développer.
         </p>
       </Reveal>
 
-      {/* Timeline scroll */}
-      <div className="mt-16 md:mt-24">
+      <div className="mt-10 md:mt-14">
         <Timeline />
       </div>
 

@@ -81,10 +81,3 @@ export const visionSteps = [
     description: "Réunir le tout dans un écosystème durable.",
   },
 ];
-
-export const quickFacts = [
-  { label: "Parcours", value: "1 an, depuis octobre 2025" },
-  { label: "Projets", value: "9+ réalisés" },
-  { label: "Spécialisation", value: "NestJS · Backend" },
-  { label: "Ambition", value: "Produits & SaaS" },
-];

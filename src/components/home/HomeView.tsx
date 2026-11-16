@@ -21,14 +21,14 @@ export default function HomeView() {
       <section id="about" className="scroll-mt-20">
         <AboutView />
       </section>
-      <OneYear />
-      <Specialization />
       <Container>
         <div className="rule" aria-hidden="true" />
       </Container>
       <section id="parcours" className="scroll-mt-20">
         <ParcoursView />
       </section>
+      <OneYear />
+      <Specialization />
       <section id="contact" className="scroll-mt-20">
         <ContactView />
       </section>
