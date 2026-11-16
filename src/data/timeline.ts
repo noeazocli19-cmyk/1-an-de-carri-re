@@ -19,8 +19,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2025",
     period: "Octobre 2025",
     title: "Début de la formation",
-    description:
-      "Je démarre mon parcours dans le développement web. Premiers pas avec HTML et CSS : structure d'une page, mise en forme, les fondations de tout ce qui suivra.",
+    description: "J'apprends à structurer une page avec HTML et à la mettre en forme avec CSS.",
     tags: ["HTML", "CSS"],
   },
   {
@@ -28,8 +27,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2025",
     period: "Novembre 2025",
     title: "JavaScript, en profondeur",
-    description:
-      "Un mois complet consacré au langage : logique, fonctionnement, évolution, raisonnement. C'est le moment où le code cesse d'être une incantation et devient un outil que je comprends.",
+    description: "Un mois centré sur la logique JavaScript et le raisonnement derrière le code.",
     tags: ["JavaScript", "Logique", "Raisonnement"],
   },
   {
@@ -37,8 +35,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2025",
     period: "Décembre 2025",
     title: "Premières interfaces réelles",
-    description:
-      "Je crée mes premières interfaces complètes en HTML, CSS et JavaScript, et je termine mes premiers projets concrets. Voir un projet abouti change la manière d'apprendre.",
+    description: "Je réalise mes premières interfaces complètes et termine mes premiers projets concrets.",
     tags: ["HTML", "CSS", "JavaScript", "Premiers projets"],
   },
   {
@@ -46,8 +43,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2026",
     period: "Janvier 2026",
     title: "Découverte de React",
-    description:
-      "Je découvre React et je construis plusieurs interfaces et sites vitrines. La pensée par composants change complètement ma manière d'aborder une page.",
+    description: "React m'amène à composer des interfaces et à construire mes premiers sites vitrines.",
     tags: ["React", "Composants", "Sites vitrines"],
   },
   {
@@ -55,8 +51,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2026",
     period: "2026",
     title: "PHP et l'envie de comprendre le serveur",
-    description:
-      "Je découvre PHP. Plus que le langage, c'est la découverte du fonctionnement serveur qui me marque : je veux comprendre ce qui se passe derrière une interface, pas seulement devant.",
+    description: "PHP me fait découvrir le fonctionnement serveur et déclenche mon intérêt pour le backend.",
     tags: ["PHP", "Backend", "Serveur"],
   },
   {
@@ -64,8 +59,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2026",
     period: "2026",
     title: "TypeScript et l'écosystème moderne",
-    description:
-      "TypeScript devient mon quotidien, suivi de Next.js, Prisma et PostgreSQL. Je passe d'interfaces isolées à des applications structurées de bout en bout.",
+    description: "TypeScript, Next.js, Prisma et PostgreSQL m'aident à structurer des applications complètes.",
     tags: ["TypeScript", "Next.js", "Prisma", "PostgreSQL"],
   },
   {
@@ -73,8 +67,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2026",
     period: "2026",
     title: "NestJS : la révélation",
-    description:
-      "Je découvre NestJS et tout s'emboîte : architecture en modules, injection de dépendances, API structurées. C'est la direction que je choisis d'approfondir sérieusement.",
+    description: "Avec NestJS, j'approfondis l'architecture modulaire et la construction d'API.",
     tags: ["NestJS", "Architecture", "API REST"],
   },
   {
@@ -82,8 +75,7 @@ export const timelineSteps: TimelineStep[] = [
     year: "2026",
     period: "Aujourd'hui",
     title: "Applications, SaaS et spécialisation NestJS",
-    description:
-      "Un an après le début, je construis des applications web complètes, j'expérimente autour des SaaS et je consolide ma spécialisation backend autour de NestJS. Et je ne compte pas m'arrêter là.",
+    description: "Je poursuis mes applications web et consolide progressivement ma spécialisation backend NestJS.",
     tags: ["SaaS", "Full-Stack", "NestJS"],
     current: true,
   },

@@ -5,7 +5,6 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/shared/Container";
 import { Reveal } from "@/components/shared/Reveal";
 import ProjectCaseStudy from "@/components/home/ProjectCaseStudy";
-import { projectSpanBySize } from "@/components/projects/ProjectCard";
 import { projects } from "@/data/projects";
 
 const PROJECT_FILTERS = ["Tous", "Applications web", "E-commerce", "Sites vitrine"] as const;
@@ -84,12 +83,11 @@ export default function ProjectsView() {
         })}
       </div>
 
-      <div className="mt-8 grid items-stretch gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-12 xl:gap-x-8">
+      <div className="mt-8 grid items-stretch gap-4 sm:gap-5 md:grid-cols-2">
         <AnimatePresence mode="popLayout" initial={false}>
           {visibleProjects.map((project, index) => (
             <motion.div
               key={project.slug}
-              className={projectSpanBySize[project.size]}
               layout
               initial={reducedMotion ? false : { opacity: 0, y: 18, scale: 0.985 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

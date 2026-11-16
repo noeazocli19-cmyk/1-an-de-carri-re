@@ -28,7 +28,7 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
   return (
     <Reveal delay={index * 0.1} className="h-full">
       <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-primary/50">
-        <div className="group/preview relative aspect-[4/3] overflow-hidden bg-muted">
+        <div className="group/preview relative aspect-[16/10] overflow-hidden bg-muted">
           <button
             type="button"
             onClick={() => navigate({ name: "projet", slug: project.slug })}
@@ -48,7 +48,7 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
                   src={images[activeImage]}
                   alt={`Capture ${activeImage + 1} du projet ${project.title}`}
                   fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover/preview:scale-[1.04]"
                 />
               </motion.div>
@@ -97,7 +97,7 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="flex flex-1 flex-col p-4 sm:p-5">
           <div className="flex items-start justify-between gap-3">
             <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
               {project.title}
@@ -106,13 +106,13 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>
-          <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+          <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
             {project.category} <span aria-hidden="true">·</span> {project.year}
           </p>
-          <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted-foreground">
             {project.tagline}
           </p>
-          <div className="mt-5 border-t border-border pt-4">
+          <div className="mt-4 border-t border-border pt-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               Technologies
             </p>
@@ -129,7 +129,7 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
           </div>
           <Button
             variant="outline"
-            className="mt-5 w-fit rounded-full"
+            className="mt-4 w-fit rounded-full"
             onClick={() => navigate({ name: "projet", slug: project.slug })}
           >
             Voir le projet

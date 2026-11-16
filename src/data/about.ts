@@ -14,8 +14,8 @@ export const aboutSections: AboutSection[] = [
     id: "qui-je-suis",
     label: "Qui je suis",
     paragraphs: [
-      "Je m'appelle Noé, j'ai une vingtaine d'années et je construis des produits numériques. Derrière ce titre un peu formel, il y a quelque chose de très simple : depuis octobre 2025, je passe la majeure partie de mon temps à concevoir, coder, casser et reconstruire des applications web.",
-      "Je ne suis pas développeur depuis dix ans. J'en suis à ma première année — et je l'assume complètement. Ce qui me distingue, ce n'est pas l'ancienneté : c'est ce que j'ai construit pendant cette année, et la direction que je me suis fixée.",
+      "Je m'appelle Noé et je construis des produits numériques. Depuis octobre 2025, j'apprends en concevant et en améliorant des applications web.",
+      "Je suis au début de mon parcours, et je l'assume. Ce qui compte pour moi, c'est ce que je construis et la direction que je prends.",
     ],
   },
   {

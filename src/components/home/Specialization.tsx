@@ -1,34 +1,68 @@
 "use client";
 
 import { Code2, Database, PanelsTopLeft, Server } from "lucide-react";
+import {
+  siCss,
+  siHtml5,
+  siJavascript,
+  siNestjs,
+  siNextdotjs,
+  siPhp,
+  siPostgresql,
+  siPrisma,
+  siReact,
+  siTailwindcss,
+  siTypescript,
+  type SimpleIcon,
+} from "simple-icons";
 import { Container } from "@/components/shared/Container";
 import { Reveal } from "@/components/shared/Reveal";
+
+interface SkillTechnology {
+  name: string;
+  icon: SimpleIcon;
+}
 
 const skillGroups = [
   {
     title: "Frontend",
     description: "Des interfaces accessibles, responsives et structurées par composants.",
     icon: PanelsTopLeft,
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    technologies: [
+      { name: "React", icon: siReact },
+      { name: "Next.js", icon: siNextdotjs },
+      { name: "TypeScript", icon: siTypescript },
+      { name: "Tailwind CSS", icon: siTailwindcss },
+    ],
   },
   {
     title: "Backend & API",
     description: "Une spécialisation en construction autour de NestJS et de la logique serveur.",
     icon: Server,
     featured: true,
-    technologies: ["NestJS", "PHP", "API REST"],
+    technologies: [
+      { name: "NestJS", icon: siNestjs },
+      { name: "PHP", icon: siPhp },
+    ],
   },
   {
     title: "Données",
     description: "Modéliser les données et connecter les applications à leur persistance.",
     icon: Database,
-    technologies: ["Prisma", "PostgreSQL"],
+    technologies: [
+      { name: "Prisma", icon: siPrisma },
+      { name: "PostgreSQL", icon: siPostgresql },
+    ],
   },
   {
     title: "Fondamentaux",
     description: "Le socle qui guide encore ma façon de comprendre et de construire le web.",
     icon: Code2,
-    technologies: ["HTML", "CSS", "JavaScript"],
+    technologies: [
+      { name: "HTML", icon: siHtml5 },
+      { name: "CSS", icon: siCss },
+      { name: "JavaScript", icon: siJavascript },
+    ],
   },
 ];
 
@@ -75,7 +109,7 @@ export default function Specialization() {
                       <p className="mt-2 font-serif text-4xl">
                         {String(group.technologies.length).padStart(2, "0")}
                         <span className={`ml-2 font-sans text-xs ${featured ? "text-primary-foreground/75" : "text-muted-foreground"}`}>
-                          éléments
+                          outils
                         </span>
                       </p>
                     </div>
@@ -95,16 +129,22 @@ export default function Specialization() {
                   </p>
 
                   <ul className={`mt-5 divide-y ${featured ? "divide-primary-foreground/20 border-primary-foreground/20" : "divide-border border-border"} border-t`}>
-                    {group.technologies.map((technology) => (
+                    {group.technologies.map((technology: SkillTechnology) => (
                       <li
-                        key={technology}
-                        className="flex items-center gap-3 py-3"
+                        key={technology.name}
+                        className="flex items-center gap-3 py-2.5"
                       >
-                        <span
-                          aria-hidden="true"
-                          className={`h-1.5 w-1.5 rounded-full ${featured ? "bg-primary-foreground" : "bg-primary"}`}
-                        />
-                        <span className="text-sm font-medium">{technology}</span>
+                        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white">
+                          <svg
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            className="h-4 w-4"
+                            style={{ color: `#${technology.icon.hex}` }}
+                          >
+                            <path fill="currentColor" d={technology.icon.path} />
+                          </svg>
+                        </span>
+                        <span className="text-sm font-medium">{technology.name}</span>
                       </li>
                     ))}
                   </ul>

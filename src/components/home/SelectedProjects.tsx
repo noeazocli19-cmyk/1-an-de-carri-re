@@ -39,9 +39,14 @@ export default function SelectedProjects() {
           </Reveal>
         </div>
 
-        <div className="mt-10 grid items-stretch gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-4 sm:mt-12 sm:grid-cols-2 lg:gap-5">
           {featuredProjects.map((project, index) => (
-            <ProjectCaseStudy key={project.slug} project={project} index={index} />
+            <div
+              key={project.slug}
+              className={index === 2 ? "sm:col-span-2 sm:mx-auto sm:w-1/2" : undefined}
+            >
+              <ProjectCaseStudy project={project} index={index} />
+            </div>
           ))}
         </div>
       </Container>
