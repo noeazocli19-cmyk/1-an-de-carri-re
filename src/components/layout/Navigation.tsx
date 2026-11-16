@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { usePortfolio } from "@/components/portfolio/portfolio-context";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { MobileTabBar } from "@/components/layout/MobileTabBar";
@@ -71,7 +72,7 @@ export function Navigation() {
               width={56}
               height={56}
               className="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-110 md:h-9 md:w-9"
-              style={{ filter: "drop-shadow(0 0 10px rgba(34, 197, 94, 0.35))" }}
+              style={{ filter: "grayscale(1) brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 81, 43, 0.25))" }}
             />
             <span className="flex items-baseline gap-0.5 text-lg font-semibold tracking-tight text-foreground">
               NOÉ
@@ -115,9 +116,10 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => go("contact")}
-              className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all duration-200 hover:-translate-y-px hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all duration-200 hover:-translate-y-px hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               Me contacter
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </button>
           </div>
 

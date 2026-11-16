@@ -1,239 +1,144 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import {
   motion,
   useReducedMotion,
   useScroll,
   useTransform,
-  type MotionStyle,
 } from "framer-motion";
-import { ArrowDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { Container } from "@/components/shared/Container";
 import { usePortfolio } from "@/components/portfolio/portfolio-context";
 import { site } from "@/data/site";
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-/**
- * Apparition en cascade : fondu + translation verticale douce.
- * Si prefers-reduced-motion : rendu statique, aucune animation.
- */
-function Cascade({
-  delay,
-  reducedMotion,
-  className,
-  children,
-}: {
-  delay: number;
-  reducedMotion: boolean;
-  className?: string;
-  children: ReactNode;
-}) {
-  if (reducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-/**
- * Couche externe : transformations liées au scroll (parallaxe de dissolution).
- * Désactivée si prefers-reduced-motion — les MotionValues restent calculées
- * (ordre des hooks stable) mais ne sont pas appliquées au DOM.
- */
-function ParallaxLayer({
-  enabled,
-  style,
-  className,
-  children,
-}: {
-  enabled: boolean;
-  style: MotionStyle;
-  className?: string;
-  children: ReactNode;
-}) {
-  if (!enabled) {
-    return <div className={className}>{children}</div>;
-  }
-  return (
-    <motion.div className={className} style={style}>
-      {children}
-    </motion.div>
-  );
-}
-
-/**
- * Hero — élément central du site. Tout est centré : titre, rôles, description,
- * actions, preuve honnête, puis le portrait sous le contenu.
- * Deux couches de mouvement imbriquées : parallaxe au scroll (externe) et
- * apparition en cascade (interne) pour éviter tout conflit de transform.
- */
 export default function Hero() {
   const { navigate } = usePortfolio();
-  const prefersReducedMotion = useReducedMotion();
-  const reducedMotion = prefersReducedMotion ?? false;
+  const reducedMotion = useReducedMotion() ?? false;
   const sectionRef = useRef<HTMLElement>(null);
-
-  // Parallaxe douce : quand la section sort du viewport, le contenu se dissout.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.25]);
-  const line1X = useTransform(scrollYProgress, [0, 1], [0, -20]);
-  const line2X = useTransform(scrollYProgress, [0, 1], [0, 20]);
-  const buttonsY = useTransform(scrollYProgress, [0, 1], [0, -24]);
-  const buttonsOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
-  const badgeOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const photoY = useTransform(scrollYProgress, [0, 1], [0, 80]);
-  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const photoOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+  const portraitY = useTransform(scrollYProgress, [0, 1], [0, 56]);
+  const portraitOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.45]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden pb-16 pt-24 md:pt-32">
-      <Container className="flex flex-col items-center text-center">
-        {/* Titre */}
-        <ParallaxLayer
-          enabled={!reducedMotion}
-          style={{ y: titleY, opacity: titleOpacity }}
-          className="w-full"
-        >
-          <Cascade delay={0} reducedMotion={reducedMotion}>
-            <h1 className="font-serif text-7xl tracking-tight text-foreground sm:text-8xl md:text-9xl">
-              NOÉ
-              <span
-                aria-hidden="true"
-                className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-primary align-baseline md:h-3 md:w-3"
-              />
-            </h1>
-          </Cascade>
-        </ParallaxLayer>
+    <section
+      ref={sectionRef}
+      className="relative isolate overflow-hidden pb-12 pt-8 sm:pb-16 sm:pt-12"
+    >
+      <div className="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute left-1/2 top-[24%] -z-10 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,81,43,0.16)_0%,rgba(255,81,43,0.05)_42%,transparent_72%)] blur-2xl sm:h-[34rem] sm:w-[34rem]"
+        aria-hidden="true"
+      />
 
-        {/* Sous-titres — deux lignes qui s'écartent doucement au scroll */}
-        <ParallaxLayer enabled={!reducedMotion} style={{ x: line1X }} className="w-full">
-          <Cascade delay={0.12} reducedMotion={reducedMotion} className="mt-6 md:mt-8">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-foreground sm:text-sm md:text-base">
-              {site.role}
-            </p>
-          </Cascade>
-        </ParallaxLayer>
-        <ParallaxLayer enabled={!reducedMotion} style={{ x: line2X }} className="w-full">
-          <Cascade delay={0.24} reducedMotion={reducedMotion} className="mt-2 md:mt-3">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-foreground sm:text-sm md:text-base">
-              {site.role2}
-            </p>
-          </Cascade>
-        </ParallaxLayer>
-
-        {/* Description */}
-        <Cascade delay={0.36} reducedMotion={reducedMotion} className="mt-6 w-full md:mt-8">
-          <p className="mx-auto max-w-xl leading-relaxed text-muted-foreground">
-            {site.heroDescription}
-          </p>
-        </Cascade>
-
-        {/* Actions */}
-        <ParallaxLayer
-          enabled={!reducedMotion}
-          style={{ y: buttonsY, opacity: buttonsOpacity }}
-          className="w-full"
-        >
-          <Cascade delay={0.48} reducedMotion={reducedMotion} className="mt-8 md:mt-10">
-            <div className="flex flex-row flex-wrap items-center justify-center gap-3">
-              <Button
-                size="lg"
-                className="rounded-full"
-                onClick={() => navigate({ name: "projets" })}
-              >
-                Voir mes projets
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full"
-                onClick={() => navigate({ name: "parcours" })}
-              >
-                Mon parcours
-              </Button>
-            </div>
-          </Cascade>
-        </ParallaxLayer>
-
-        {/* Preuve honnête — 1 an de parcours, 9+ projets, jamais gonflé */}
-        <ParallaxLayer enabled={!reducedMotion} style={{ opacity: badgeOpacity }} className="w-full">
-          <Cascade delay={0.6} reducedMotion={reducedMotion} className="mt-6 md:mt-8">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-primary" />
-              {site.proof}
-            </span>
-          </Cascade>
-        </ParallaxLayer>
-
-        {/* Indication de scroll — rebond très doux */}
-        <Cascade delay={0.72} reducedMotion={reducedMotion} className="mt-10 w-full md:mt-12">
+      <Container className="relative">
+        <div className="grid items-center gap-8 md:min-h-[490px] md:grid-cols-[minmax(0,1fr)_minmax(250px,0.9fr)_minmax(0,1fr)] md:gap-6 lg:gap-10">
           <motion.div
-            aria-hidden="true"
-            className="flex justify-center"
-            animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            className="relative z-10 pt-4 md:pt-0"
+            initial={reducedMotion ? false : { opacity: 0, x: -18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.12, ease: EASE }}
           >
-            <ArrowDown className="h-5 w-5 text-muted-foreground" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3.5 py-2 text-xs font-medium text-muted-foreground backdrop-blur">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+              </span>
+              Portfolio personnel · 2026
+            </span>
+            <h2 className="mt-8 max-w-sm text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-[3.55rem]">
+              {site.role}
+              <span className="text-primary">.</span>
+            </h2>
+            <div className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
+              Basé au {site.location}
+            </div>
           </motion.div>
-        </Cascade>
 
-        {/* Photo officielle de Noé — halo vert de la marque */}
-        <ParallaxLayer
-          enabled={!reducedMotion}
-          style={{ y: photoY, scale: photoScale, opacity: photoOpacity }}
-          className="w-full"
-        >
-          <motion.figure
-            className="mx-auto mt-12 flex w-full flex-col items-center md:mt-16"
-            initial={reducedMotion ? undefined : { opacity: 0, y: 28, scale: 0.97 }}
-            animate={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: EASE }}
+          <motion.div
+            className="relative z-0 mx-auto w-full max-w-[390px] md:self-end"
+            style={reducedMotion ? undefined : { y: portraitY, opacity: portraitOpacity }}
           >
-            <motion.div
-              className="relative"
-              animate={reducedMotion ? undefined : { y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            <motion.figure
+              className="mx-auto"
+              initial={reducedMotion ? false : { opacity: 0, y: 22, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.85, delay: 0.18, ease: EASE }}
             >
-              {/* Halo vert doux derrière la photo */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 scale-95 rounded-[2.5rem] bg-[radial-gradient(circle,rgba(34,197,94,0.2)_0%,rgba(34,197,94,0.05)_45%,transparent_70%)] blur-2xl"
-              />
-              <div className="relative w-60 overflow-hidden rounded-[2rem] border border-border shadow-[0_32px_64px_-32px_rgba(0,0,0,0.55)] ring-1 ring-foreground/10 sm:w-72 md:w-[340px]">
-                <div className="relative aspect-[3/4] w-full">
-                  <Image
-                    src="/images/noe-portrait.jpg"
-                    alt="Photo de Noé, développeur full-stack, un ordinateur portable à la main"
-                    fill
-                    priority
-                    sizes="(min-width: 768px) 340px, 288px"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </div>
-            </motion.div>
-            <figcaption className="mt-4 text-center text-xs text-muted-foreground">
-              {site.name} — {site.role} · {site.role2}
-            </figcaption>
-          </motion.figure>
-        </ParallaxLayer>
+              <motion.div
+                className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-[#151311] shadow-[0_32px_100px_-40px_rgba(255,81,43,0.28)]"
+                animate={reducedMotion ? undefined : { y: [0, -7, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Image
+                  src="/images/noe-portrait.jpg"
+                  alt="Noé, développeur full-stack, avec son ordinateur portable"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 30vw, 82vw"
+                  className="object-cover object-[center_18%] grayscale contrast-110 brightness-[0.82]"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090909]/85 via-transparent to-[#090909]/10"
+                  aria-hidden="true"
+                />
+              </motion.div>
+              <figcaption className="sr-only">
+                {site.name}, {site.role}, basé au {site.location}.
+              </figcaption>
+            </motion.figure>
+          </motion.div>
+
+          <motion.div
+            className="relative z-10 flex flex-col items-start gap-5 md:pl-2"
+            initial={reducedMotion ? false : { opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.28, ease: EASE }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              Construire. Apprendre. Partager.
+            </p>
+            <p className="max-w-sm text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {site.heroDescription}
+            </p>
+            <button
+              type="button"
+              onClick={() => navigate({ name: "projets" })}
+              className="group mt-1 inline-flex items-center gap-3 rounded-full bg-primary py-2 pl-2 pr-5 text-sm font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            >
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-primary transition-transform duration-200 group-hover:rotate-[-35deg]">
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+              Voir mes travaux
+            </button>
+            <span className="mt-1 text-xs text-muted-foreground">{site.proof}</span>
+          </motion.div>
+        </div>
+
+        <motion.h1
+          className="relative z-10 -mt-2 whitespace-nowrap text-center text-[clamp(5rem,20vw,15rem)] font-black leading-[0.76] tracking-[-0.09em] text-foreground sm:-mt-8 md:-mt-12"
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.38, ease: EASE }}
+        >
+          NOÉ<span className="text-primary">.</span>
+        </motion.h1>
+
+        <motion.div
+          className="mt-10 flex items-center justify-center gap-2 text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground sm:mt-12"
+          animate={reducedMotion ? undefined : { y: [0, 5, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowDown className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          Défiler pour découvrir
+        </motion.div>
       </Container>
     </section>
   );

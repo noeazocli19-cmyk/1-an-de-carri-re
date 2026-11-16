@@ -37,7 +37,7 @@ export function Footer() {
                 width={220}
                 height={220}
                 className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-[1.06] sm:h-14 sm:w-14"
-                style={{ filter: "drop-shadow(0 0 14px rgba(34, 197, 94, 0.25))" }}
+                style={{ filter: "grayscale(1) brightness(0) invert(1) drop-shadow(0 0 14px rgba(255, 81, 43, 0.22))" }}
               />
               <span className="flex items-baseline gap-1 text-2xl font-semibold tracking-tight text-foreground">
                 NOÉ

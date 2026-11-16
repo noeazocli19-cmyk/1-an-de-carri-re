@@ -6,15 +6,12 @@ import { Button } from "@/components/ui/button";
 import { usePortfolio } from "@/components/portfolio/portfolio-context";
 import { site } from "@/data/site";
 
-/**
- * Appel à l'action final — section signature aux couleurs du logo :
- * dégradé vert du N, texte noir, comme le logo NOÉ.
- */
+/** Appel à l'action final — section signature en dégradé orange. */
 export default function ContactCta() {
   const { navigate } = usePortfolio();
 
   return (
-    <section className="bg-gradient-green py-24 text-[#0a0a0a] sm:py-28">
+    <section className="bg-gradient-orange py-24 text-[#0a0a0a] sm:py-28">
       <Container className="text-center">
         <Reveal className="flex flex-col items-center">
           <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#0a0a0a]/70">
@@ -30,7 +27,7 @@ export default function ContactCta() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Button
               size="lg"
-              className="rounded-full bg-[#0a0a0a] text-[#22c55e] hover:bg-[#1a1a1a] hover:text-[#4ade80]"
+              className="rounded-full bg-[#0a0a0a] text-[#ff7656] hover:bg-[#1a1a1a] hover:text-[#ff987e]"
               onClick={() => navigate({ name: "contact" })}
             >
               Me contacter

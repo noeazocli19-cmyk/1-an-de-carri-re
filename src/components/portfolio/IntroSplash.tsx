@@ -18,8 +18,8 @@ const EASE_REVEAL: [number, number, number, number] = [0.22, 1, 0.36, 1];
 /**
  * Écran d'intro — joué à la première visite de chaque session.
  *
- * Déroulé : le N du logo apparaît (spring + halo vert), le nom « NOÉ » se
- * révèle lettre par lettre, une ligne de progression verte se remplit pendant
+ * Déroulé : le N du logo apparaît (spring + halo orange), le nom « NOÉ » se
+ * révèle lettre par lettre, une ligne de progression orange se remplit pendant
  * que la page se charge. Dès que la page est chargée (et la durée minimale
  * atteinte), le rideau se lève vers le haut et le portfolio apparaît.
  *
@@ -115,12 +115,12 @@ export function IntroSplash() {
         >
           <p className="sr-only">Chargement du portfolio de Noé…</p>
 
-          {/* Halo vert central, hérité de la luminescence du N */}
+          {/* Halo orange central */}
           <div
             className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(34,197,94,0.14) 0%, rgba(34,197,94,0.05) 45%, transparent 70%)",
+                "radial-gradient(circle, rgba(255,81,43,0.14) 0%, rgba(255,81,43,0.05) 45%, transparent 70%)",
             }}
             aria-hidden="true"
           />
@@ -141,7 +141,7 @@ export function IntroSplash() {
               height={112}
               priority
               className="h-20 w-20 object-contain md:h-24 md:w-24"
-              style={{ filter: "drop-shadow(0 0 26px rgba(34, 197, 94, 0.45))" }}
+              style={{ filter: "grayscale(1) brightness(0) invert(1) drop-shadow(0 0 26px rgba(255, 81, 43, 0.32))" }}
             />
           </motion.div>
 
@@ -183,7 +183,7 @@ export function IntroSplash() {
           {!reducedMotion ? (
             <div className="relative mt-9 h-px w-40 overflow-hidden bg-border">
               <motion.div
-                className="h-full w-full origin-left bg-gradient-green"
+                className="h-full w-full origin-left bg-gradient-orange"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 1.9, delay: 0.35, ease: "easeInOut" }}
