@@ -5,9 +5,7 @@ import { Reveal } from "@/components/shared/Reveal";
 import { Timeline } from "./Timeline";
 
 /**
- * Vue Parcours — timeline verticale pilotée par le scroll.
- * Chaque étape est réelle et documentée (données : src/data/timeline.ts) :
- * d'octobre 2025 à aujourd'hui, sans expérience gonflée ni date inventée.
+ * Vue Parcours — carrousel automatique et contrôlable des étapes documentées.
  */
 export default function ParcoursView() {
   return (

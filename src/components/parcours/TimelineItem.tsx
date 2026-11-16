@@ -8,14 +8,18 @@ import type { TimelineStep } from "@/types";
 interface TimelineItemProps {
   step: TimelineStep;
   index: number;
+  count: number;
 }
 
-export function TimelineItem({ step, index }: TimelineItemProps) {
+export function TimelineItem({ step, index, count }: TimelineItemProps) {
   return (
     <Reveal delay={(index % 3) * 0.06} className="h-full">
       <article
+        role="group"
+        aria-roledescription="diapositive"
+        aria-label={`Étape ${index + 1} sur ${count} : ${step.title}`}
         className={cn(
-          "group flex h-full flex-col rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:p-5",
+          "group flex min-h-72 flex-col rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:min-h-80 sm:p-6",
           step.current
             ? "border-primary/60 bg-primary/[0.04]"
             : "border-border bg-card hover:border-primary/40"
