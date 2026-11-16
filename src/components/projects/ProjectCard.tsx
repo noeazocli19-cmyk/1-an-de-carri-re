@@ -7,15 +7,11 @@ import { TechList } from "@/components/shared/TechList";
 import { usePortfolio } from "@/components/portfolio/portfolio-context";
 import type { Project, ProjectSize } from "@/types";
 
-/**
- * Correspondance taille éditoriale → empan de colonnes dans la grille 12 colonnes.
- * La même classe est portée par le wrapper <Reveal> dans ProjectsView (lui seul
- * est enfant direct de la grille) et par l'<article> ci-dessous.
- */
+/** Correspondance taille éditoriale → empan de colonnes sur grand écran. */
 export const projectSpanBySize: Record<ProjectSize, string> = {
-  large: "md:col-span-7",
-  medium: "md:col-span-5",
-  small: "md:col-span-4",
+  large: "xl:col-span-7",
+  medium: "xl:col-span-5",
+  small: "xl:col-span-4",
 };
 
 interface ProjectCardProps {

@@ -1,41 +1,105 @@
 "use client";
 
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/shared/Container";
 import { Reveal } from "@/components/shared/Reveal";
-import { ProjectCard, projectSpanBySize } from "@/components/projects/ProjectCard";
+import ProjectCaseStudy from "@/components/home/ProjectCaseStudy";
+import { projectSpanBySize } from "@/components/projects/ProjectCard";
 import { projects } from "@/data/projects";
 
+const PROJECT_FILTERS = ["Tous", "Applications web", "E-commerce", "Sites vitrine"] as const;
+type ProjectFilter = (typeof PROJECT_FILTERS)[number];
+
+function matchesFilter(category: string, filter: ProjectFilter) {
+  const normalizedCategory = category.toLowerCase();
+
+  switch (filter) {
+    case "Applications web":
+      return normalizedCategory.startsWith("plateforme") || normalizedCategory.startsWith("saas");
+    case "E-commerce":
+      return normalizedCategory.includes("e-commerce");
+    case "Sites vitrine":
+      return normalizedCategory.startsWith("site vitrine");
+    default:
+      return true;
+  }
+}
+
 /**
- * Vue PROJETS — liste éditoriale en grille 12 colonnes.
- * La hiérarchie visuelle vient des données (project.size → large / medium / small),
- * volontairement pas un mur de cartes identiques.
+ * Page dédiée à la galerie complète des projets, classés et filtrables.
  */
 export default function ProjectsView() {
+  const [activeFilter, setActiveFilter] = useState<ProjectFilter>("Tous");
+  const reducedMotion = useReducedMotion() ?? false;
+  const visibleProjects = projects.filter((project) =>
+    matchesFilter(project.category, activeFilter)
+  );
+
   return (
-    <Container className="pt-12 md:pt-16">
-      {/* En-tête */}
-      <Reveal className="flex flex-col gap-4">
-        <span className="eyebrow">Projets</span>
-        <h1 className="max-w-3xl font-serif text-4xl leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-          9+ projets construits depuis octobre 2025.
-        </h1>
-        <p className="max-w-2xl text-muted-foreground">
-          Des premières pages HTML aux applications full-stack avec NestJS : chaque projet
-          est documenté avec son contexte, ses difficultés et ses apprentissages.
+    <Container className="pb-20 pt-12 md:pb-24 md:pt-16">
+      <Reveal className="grid items-end gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+        <div>
+          <span className="eyebrow">Projets</span>
+          <h1 className="mt-4 max-w-2xl text-4xl font-semibold leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            Des projets dont je suis fier.
+          </h1>
+        </div>
+        <p className="max-w-xl leading-relaxed text-muted-foreground md:justify-self-end">
+          {projects.length} projets documentés ici, de la première idée jusqu’à leur mise en
+          ligne. Chaque carte présente le projet et les technologies utilisées.
         </p>
       </Reveal>
 
-      {/* Grille éditoriale — l'empan de colonnes suit la taille du projet */}
-      <div className="mt-14 grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-12 md:gap-x-8">
-        {projects.map((project, i) => (
-          <Reveal
-            key={project.slug}
-            delay={(i % 3) * 0.08}
-            className={projectSpanBySize[project.size]}
-          >
-            <ProjectCard project={project} index={i} />
-          </Reveal>
-        ))}
+      <div
+        className="mt-10 flex flex-wrap gap-2"
+        role="group"
+        aria-label="Filtrer les projets par catégorie"
+      >
+        {PROJECT_FILTERS.map((filter) => {
+          const count =
+            filter === "Tous"
+              ? projects.length
+              : projects.filter((project) => matchesFilter(project.category, filter)).length;
+          const active = activeFilter === filter;
+
+          return (
+            <button
+              key={filter}
+              type="button"
+              aria-pressed={active}
+              onClick={() => setActiveFilter(filter)}
+              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                active
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-card text-muted-foreground hover:border-primary/50 hover:text-foreground"
+              }`}
+            >
+              {filter}
+              <span className={active ? "text-primary-foreground/70" : "text-muted-foreground/70"}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-8 grid items-stretch gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-12 xl:gap-x-8">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {visibleProjects.map((project, index) => (
+            <motion.div
+              key={project.slug}
+              className={projectSpanBySize[project.size]}
+              layout
+              initial={reducedMotion ? false : { opacity: 0, y: 18, scale: 0.985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reducedMotion ? undefined : { opacity: 0, y: 12, scale: 0.985 }}
+              transition={{ duration: reducedMotion ? 0 : 0.35, delay: index * 0.035 }}
+            >
+              <ProjectCaseStudy project={project} index={index} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </Container>
   );

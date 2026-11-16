@@ -7,12 +7,12 @@ import { SocialLinks } from "@/components/shared/SocialLinks";
 import { site } from "@/data/site";
 
 const FOOTER_LINKS = [
-  { label: "Accueil", name: "home" },
-  { label: "À propos", name: "a-propos" },
-  { label: "Parcours", name: "parcours" },
-  { label: "Projets", name: "projets" },
-  { label: "Notes", name: "notes" },
-  { label: "Contact", name: "contact" },
+  { label: "Accueil", view: "home" },
+  { label: "À propos", section: "about" },
+  { label: "Parcours", section: "parcours" },
+  { label: "Projets", view: "projets" },
+  { label: "Notes", view: "notes" },
+  { label: "Contact", section: "contact" },
 ] as const;
 
 export function Footer() {
@@ -57,10 +57,16 @@ export function Footer() {
             <p className="eyebrow mb-4">Navigation</p>
             <ul className="flex flex-col gap-2.5">
               {FOOTER_LINKS.map((link) => (
-                <li key={link.name}>
+                <li key={link.label}>
                   <button
                     type="button"
-                    onClick={() => navigate({ name: link.name })}
+                    onClick={() => {
+                      if ("section" in link) {
+                        navigate({ name: "home" }, link.section);
+                      } else {
+                        navigate({ name: link.view });
+                      }
+                    }}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     {link.label}

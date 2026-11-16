@@ -15,9 +15,9 @@ export default function ParcoursView() {
       {/* En-tête centré */}
       <Reveal className="mx-auto flex max-w-2xl flex-col items-center text-center">
         <span className="eyebrow">Parcours</span>
-        <h1 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+        <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
           Un an à construire, étape par étape.
-        </h1>
+        </h2>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
           D'octobre 2025 à aujourd'hui : chaque étape est réelle, documentée et
           reliée aux projets que j'ai construits. Le scroll raconte la

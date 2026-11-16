@@ -28,7 +28,7 @@ export default function ContactCta() {
             <Button
               size="lg"
               className="rounded-full bg-[#0a0a0a] text-[#ff7656] hover:bg-[#1a1a1a] hover:text-[#ff987e]"
-              onClick={() => navigate({ name: "contact" })}
+              onClick={() => navigate({ name: "home" }, "contact")}
             >
               Me contacter
             </Button>

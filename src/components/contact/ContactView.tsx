@@ -18,9 +18,9 @@ export default function ContactView() {
       {/* En-tête */}
       <Reveal>
         <span className="eyebrow">Contact</span>
-        <h1 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+        <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
           Travaillons ensemble.
-        </h1>
+        </h2>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           Un projet, une question, une opportunité — ou simplement l'envie
           d'échanger sur le développement ? Ma boîte est ouverte.

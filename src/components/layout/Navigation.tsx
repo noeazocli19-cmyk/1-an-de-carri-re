@@ -9,13 +9,13 @@ import { MobileTabBar } from "@/components/layout/MobileTabBar";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { label: "Accueil", name: "home" },
-  { label: "À propos", name: "a-propos" },
-  { label: "Parcours", name: "parcours" },
-  { label: "Projets", name: "projets" },
-  { label: "Tarifs", name: "tarifs" },
-  { label: "Notes", name: "notes" },
-  { label: "Contact", name: "contact" },
+  { label: "Accueil", view: "home" },
+  { label: "À propos", section: "about" },
+  { label: "Parcours", section: "parcours" },
+  { label: "Projets", view: "projets" },
+  { label: "Tarifs", view: "tarifs" },
+  { label: "Notes", view: "notes" },
+  { label: "Contact", section: "contact" },
 ] as const;
 
 /**
@@ -41,8 +41,12 @@ export function Navigation() {
         ? "notes"
         : view.name;
 
-  const go = (name: (typeof NAV_ITEMS)[number]["name"]) => {
-    navigate({ name });
+  const go = (item: (typeof NAV_ITEMS)[number]) => {
+    if ("section" in item) {
+      navigate({ name: "home" }, item.section);
+    } else {
+      navigate({ name: item.view });
+    }
   };
 
   return (
@@ -62,7 +66,7 @@ export function Navigation() {
           {/* Logo officiel */}
           <button
             type="button"
-            onClick={() => go("home")}
+            onClick={() => navigate({ name: "home" })}
             className="group flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
             aria-label="Aller à l'accueil"
           >
@@ -83,12 +87,12 @@ export function Navigation() {
           {/* Liens desktop */}
           <ul className="hidden items-center gap-1 md:flex">
             {NAV_ITEMS.map((item) => {
-              const active = activeName === item.name;
+              const active = "view" in item && activeName === item.view;
               return (
-                <li key={item.name}>
+                <li key={item.label}>
                   <button
                     type="button"
-                    onClick={() => go(item.name)}
+                    onClick={() => go(item)}
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-[color,background-color] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
@@ -115,7 +119,7 @@ export function Navigation() {
             <ThemeToggle />
             <button
               type="button"
-              onClick={() => go("contact")}
+              onClick={() => navigate({ name: "home" }, "contact")}
               className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all duration-200 hover:-translate-y-px hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               Me contacter

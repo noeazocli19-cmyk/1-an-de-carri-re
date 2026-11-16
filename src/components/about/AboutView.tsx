@@ -28,9 +28,9 @@ export default function AboutView() {
       <div className="grid items-start gap-12 lg:grid-cols-[1.3fr_1fr]">
         <Reveal className="flex flex-col items-start">
           <span className="eyebrow">À propos</span>
-          <h1 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+          <h2 className="mt-4 font-serif text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
             Je construis des produits, pas seulement du code.
-          </h1>
+          </h2>
           <div className="mt-6 space-y-4">
             {introParagraphs.map((paragraph, i) => (
               <p
@@ -162,7 +162,7 @@ export default function AboutView() {
             Télécharger mon CV
           </a>
         </Button>
-        <Button onClick={() => navigate({ name: "contact" })}>
+        <Button onClick={() => navigate({ name: "home" }, "contact")}>
           Me contacter
         </Button>
       </Reveal>

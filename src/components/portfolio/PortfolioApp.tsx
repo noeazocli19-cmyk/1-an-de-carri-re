@@ -7,14 +7,11 @@ import { IntroSplash } from "@/components/portfolio/IntroSplash";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import HomeView from "@/components/home/HomeView";
-import AboutView from "@/components/about/AboutView";
-import ParcoursView from "@/components/parcours/ParcoursView";
 import ProjectsView from "@/components/projects/ProjectsView";
 import PricingView from "@/components/pricing/PricingView";
 import ProjectDetailView from "@/components/projects/ProjectDetailView";
 import NotesView from "@/components/notes/NotesView";
 import NoteDetailView from "@/components/notes/NoteDetailView";
-import ContactView from "@/components/contact/ContactView";
 
 function ViewRouter() {
   const { view } = usePortfolio();
@@ -24,10 +21,6 @@ function ViewRouter() {
     switch (view.name) {
       case "home":
         return <HomeView />;
-      case "a-propos":
-        return <AboutView />;
-      case "parcours":
-        return <ParcoursView />;
       case "projets":
         return <ProjectsView />;
       case "tarifs":
@@ -38,8 +31,6 @@ function ViewRouter() {
         return <NotesView />;
       case "note":
         return <NoteDetailView slug={view.slug} />;
-      case "contact":
-        return <ContactView />;
     }
   })();
 

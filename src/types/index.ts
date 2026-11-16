@@ -4,16 +4,14 @@
 
 export type ViewName =
   | "home"
-  | "a-propos"
-  | "parcours"
   | "projets"
   | "tarifs"
-  | "notes"
-  | "contact";
+  | "notes";
 
 /**
  * Vue courante de la SPA (route unique `/`).
- * - vues principales : accueil, à propos, parcours, projets, notes, contact
+ * - vues principales : accueil, projets, tarifs et notes
+ * - à propos, parcours et contact : sections de l'accueil
  * - vues de détail : un projet précis (projet) ou une note précise (note)
  */
 export type View =

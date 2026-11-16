@@ -13,13 +13,13 @@ import {
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Accueil", name: "home", icon: House },
-  { label: "À propos", name: "a-propos", icon: UserRound },
-  { label: "Parcours", name: "parcours", icon: BriefcaseBusiness },
-  { label: "Projets", name: "projets", icon: FolderOpen },
-  { label: "Tarifs", name: "tarifs", icon: BadgeEuro },
-  { label: "Notes", name: "notes", icon: NotebookText },
-  { label: "Contact", name: "contact", icon: Mail },
+  { label: "Accueil", view: "home", icon: House },
+  { label: "À propos", section: "about", icon: UserRound },
+  { label: "Parcours", section: "parcours", icon: BriefcaseBusiness },
+  { label: "Projets", view: "projets", icon: FolderOpen },
+  { label: "Tarifs", view: "tarifs", icon: BadgeEuro },
+  { label: "Notes", view: "notes", icon: NotebookText },
+  { label: "Contact", section: "contact", icon: Mail },
 ] as const;
 
 /**
@@ -42,13 +42,19 @@ export function MobileTabBar() {
     >
       <ul className="mx-auto flex w-full max-w-xl items-stretch justify-between px-1">
         {NAV_ITEMS.map((item) => {
-          const active = activeName === item.name;
+          const active = "view" in item && activeName === item.view;
           const Icon = item.icon;
           return (
-            <li key={item.name} className="flex-1">
+            <li key={item.label} className="flex-1">
               <button
                 type="button"
-                onClick={() => navigate({ name: item.name })}
+                onClick={() => {
+                  if ("section" in item) {
+                    navigate({ name: "home" }, item.section);
+                  } else {
+                    navigate({ name: item.view });
+                  }
+                }}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative flex min-h-[60px] w-full flex-col items-center justify-center gap-1 whitespace-nowrap px-0.5 py-2 text-[10px] leading-none transition-[color,transform] duration-200 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-primary active:scale-[0.97]",

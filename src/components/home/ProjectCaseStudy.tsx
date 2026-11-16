@@ -53,9 +53,6 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
                 />
               </motion.div>
             </AnimatePresence>
-            <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
-              {project.category}
-            </span>
             <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover/preview:rotate-45">
               <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
             </span>
@@ -106,9 +103,12 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
               {project.title}
             </h3>
             <span className="shrink-0 font-mono text-xs text-muted-foreground">
-              0{index + 1}
+              {String(index + 1).padStart(2, "0")}
             </span>
           </div>
+          <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+            {project.category} <span aria-hidden="true">·</span> {project.year}
+          </p>
           <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
             {project.tagline}
           </p>

@@ -37,7 +37,7 @@ export default function ParcoursTeaser() {
               description="Mon parcours tient en une année. Chaque étape y est documentée, datée et reliée à un projet concret."
             />
             <Reveal delay={0.15} className="mt-8">
-              <Button onClick={() => navigate({ name: "parcours" })}>
+              <Button onClick={() => navigate({ name: "home" }, "parcours")}>
                 Découvrir mon parcours
               </Button>
             </Reveal>

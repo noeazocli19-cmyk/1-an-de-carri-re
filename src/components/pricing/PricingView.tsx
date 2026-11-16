@@ -40,7 +40,7 @@ export default function PricingView() {
                   </li>
                 ))}
               </ul>
-              <Button className="mt-8 w-full" variant={item.highlighted ? "default" : "outline"} onClick={() => navigate({ name: "contact" })}>
+              <Button className="mt-8 w-full" variant={item.highlighted ? "default" : "outline"} onClick={() => navigate({ name: "home" }, "contact")}>
                 Demander un devis
                 <ArrowRight aria-hidden="true" />
               </Button>

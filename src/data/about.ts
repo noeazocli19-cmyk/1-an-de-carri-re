@@ -24,7 +24,7 @@ export const aboutSections: AboutSection[] = [
     paragraphs: [
       "Tout a commencé fin 2025, avec les bases : HTML, CSS, JavaScript. J'ai voulu comprendre plutôt que survoler — un mois entier passé uniquement sur la logique JavaScript a tout changé dans ma manière de raisonner.",
       "Puis les projets sont arrivés : des interfaces, des sites vitrines, du React, une incursion en PHP qui a réveillé ma curiosité pour le backend. TypeScript, Next.js, Prisma, PostgreSQL ont suivi — jusqu'à NestJS, le framework autour duquel j'ai choisi de me spécialiser.",
-      "Un an plus tard : plus de neuf projets, des pages statiques aux applications full-stack. Le détail est sur la page Parcours.",
+      "Un an plus tard : plus de neuf projets, des pages statiques aux applications full-stack. Le détail est dans la section parcours ci-dessous.",
     ],
   },
   {
