@@ -5,6 +5,7 @@ import { Container } from "@/components/shared/Container";
 import { Reveal } from "@/components/shared/Reveal";
 import { usePortfolio } from "@/components/portfolio/portfolio-context";
 import { featuredProjects } from "@/data/projects";
+import { Button } from "@/components/ui/button";
 import ProjectCaseStudy from "./ProjectCaseStudy";
 
 /**
@@ -28,14 +29,15 @@ export default function SelectedProjects() {
             </p>
           </Reveal>
           <Reveal delay={0.15} className="shrink-0">
-            <button
+            <Button
               type="button"
-              className="link-underline text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-4"
+              variant="outline"
+              className="rounded-full"
               onClick={() => navigate({ name: "projets" })}
             >
               Tous les projets
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </button>
+            </Button>
           </Reveal>
         </div>
 

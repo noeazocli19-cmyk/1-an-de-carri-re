@@ -28,7 +28,7 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
   return (
     <Reveal delay={index * 0.1} className="h-full">
       <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-primary/50">
-        <div className="group/preview relative aspect-[16/10] overflow-hidden bg-muted">
+        <div className="group/preview relative aspect-video overflow-hidden bg-muted">
           <button
             type="button"
             onClick={() => navigate({ name: "projet", slug: project.slug })}
@@ -109,22 +109,27 @@ export default function ProjectCaseStudy({ project, index }: ProjectCaseStudyPro
           <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
             {project.category} <span aria-hidden="true">·</span> {project.year}
           </p>
-          <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-2 line-clamp-1 flex-1 text-sm leading-relaxed text-muted-foreground">
             {project.tagline}
           </p>
-          <div className="mt-4 border-t border-border pt-3">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Technologies
-            </p>
-            <ul className="mt-2.5 flex flex-wrap gap-2" aria-label="Technologies utilisées">
-              {project.technologies.map((technology) => (
+          <div className="mt-3">
+            <ul
+              className="flex flex-wrap gap-1.5"
+              aria-label={`Technologies utilisées : ${project.technologies.join(", ")}`}
+            >
+              {project.technologies.slice(0, 3).map((technology) => (
                 <li
                   key={technology}
-                  className="rounded-full border border-border bg-background px-2.5 py-1 text-[11px] text-foreground/80"
+                  className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] text-foreground/80"
                 >
                   {technology}
                 </li>
               ))}
+              {project.technologies.length > 3 ? (
+                <li className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] text-muted-foreground">
+                  +{project.technologies.length - 3}
+                </li>
+              ) : null}
             </ul>
           </div>
           <Button
