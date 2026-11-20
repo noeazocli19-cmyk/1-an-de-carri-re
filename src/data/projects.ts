@@ -452,6 +452,153 @@ export const projects: Project[] = [
       "/images/projects/belle-odeur-2.jpg",
     ],
   },
+  {
+    slug: "avizo",
+    title: "AVIZO 2.0",
+    tagline:
+      "Le site d'un restaurant-bar à Akpakpa, Cotonou : ses plats, son ambiance et toutes les infos pour venir ou commander.",
+    year: "2026",
+    category: "Site vitrine · Restaurant",
+    featured: false,
+    size: "medium",
+    cover: "/images/projects/avizo-1.png",
+    problem:
+      "Un restaurant-bar a besoin d'être facile à découvrir : donner envie avec ses plats, présenter le lieu et permettre aux visiteurs de le contacter simplement.",
+    solution:
+      "Un site vitrine consacré à AVIZO 2.0 : présentation du restaurant, galerie de plats et du lieu, accès à la carte, coordonnées, itinéraire et contact direct par téléphone ou WhatsApp.",
+    technologies: ["Next.js", "React"],
+    learning:
+      "Pour un commerce de proximité, les informations pratiques et les moyens de contact comptent autant que la présentation visuelle.",
+    introduction:
+      "AVIZO 2.0 est un restaurant-bar situé à Akpakpa, à Cotonou. Son site présente sa cuisine et son ambiance conviviale, et aide les visiteurs à préparer leur venue ou à prendre contact.",
+    context:
+      "L'expérience met en avant les plats, la terrasse et le restaurant, avec des informations adaptées aux visiteurs qui consultent le site sur mobile.",
+    objective:
+      "Faire découvrir l'établissement et rendre l'accès au menu, à l'itinéraire et aux contacts immédiat.",
+    features: [
+      "Présentation du restaurant-bar à Akpakpa, Cotonou",
+      "Galerie de plats et de l'établissement",
+      "Accès au menu",
+      "Contact par téléphone et WhatsApp",
+      "Localisation et informations pratiques",
+    ],
+    difficulties: [
+      "Mettre en valeur à la fois la cuisine et l'ambiance du restaurant",
+      "Rendre les coordonnées et l'accès au lieu faciles à trouver",
+    ],
+    decisions: [
+      {
+        title: "Faciliter le contact",
+        detail:
+          "Le téléphone et WhatsApp sont proposés directement pour les questions, commandes et réservations.",
+      },
+    ],
+    learnings: [
+      "Présenter un lieu avec des visuels et des informations concrètes",
+      "Adapter les appels à l'action aux usages de l'établissement",
+    ],
+    demoUrl: "https://avizo-rho.vercel.app/",
+    screenshots: ["/images/projects/avizo-1.png"],
+  },
+  {
+    slug: "devsign",
+    title: "DevSign",
+    tagline:
+      "Un espace pour les freelances et agences : devis, contrats, signature électronique et acompte réunis dans un même parcours.",
+    year: "2026",
+    category: "SaaS · Gestion de contrats",
+    featured: false,
+    size: "large",
+    cover: "/images/projects/devsign-1.png",
+    problem:
+      "Pour lancer une mission, les freelances jonglent souvent entre devis, documents, échanges avec le client, signature et suivi du paiement.",
+    solution:
+      "DevSign rassemble ces étapes dans un parcours partageable par un seul lien : création du projet et du contrat, espace client, signature électronique et paiement d'acompte via SaaSPay.",
+    technologies: ["Next.js", "React"],
+    learning:
+      "Un produit de gestion ne s'arrête pas à la création d'un document : il faut aussi penser au parcours du client, au suivi et au paiement.",
+    introduction:
+      "DevSign est un outil destiné aux développeurs, freelances et agences. Il simplifie le passage du premier échange au démarrage effectif d'un projet.",
+    context:
+      "Le service réunit la préparation d'un contrat et son envoi, puis permet au client de le consulter, de le signer et de régler un acompte sans créer de compte.",
+    objective:
+      "Réduire les allers-retours entre professionnels et clients en centralisant le contrat, la signature et le paiement.",
+    features: [
+      "Création de projets et génération de contrats",
+      "Lien client unique, sans inscription côté client",
+      "Signature électronique traçable",
+      "Paiement d'acompte via SaaSPay",
+      "Relances automatiques et suivi des signatures",
+      "Téléchargement du contrat signé en PDF",
+    ],
+    difficulties: [
+      "Rendre le parcours compréhensible pour le professionnel comme pour son client",
+      "Réunir contrat, signature et paiement dans une seule expérience",
+      "Présenter clairement les étapes de suivi d'un projet",
+    ],
+    decisions: [
+      {
+        title: "Un seul lien côté client",
+        detail:
+          "Le client peut consulter le contrat, le signer et payer son acompte depuis une page dédiée, sans créer de compte.",
+      },
+    ],
+    learnings: [
+      "Concevoir un parcours partagé entre deux types d'utilisateurs",
+      "Rendre visibles les étapes clés d'un processus métier",
+      "L'importance du suivi après l'envoi d'un contrat",
+    ],
+    demoUrl: "https://devsign-psi.vercel.app/",
+    screenshots: ["/images/projects/devsign-1.png"],
+  },
+  {
+    slug: "inspired-design",
+    title: "INSPIRED DESIGN",
+    tagline:
+      "Le site d'un cabinet d'architecture à Cotonou, entre présentation de son équipe, de ses expertises et de ses réalisations.",
+    year: "2026",
+    category: "Site vitrine · Architecture",
+    featured: false,
+    size: "medium",
+    cover: "/images/projects/inspired-design-1.jpg",
+    problem:
+      "Un cabinet d'architecture doit pouvoir présenter son approche, ses services et ses réalisations avec une identité cohérente et des repères clairs pour ses futurs clients.",
+    solution:
+      "Un site vitrine pour INSPIRED DESIGN qui présente le cabinet et son fondateur, détaille ses expertises, expose une sélection de projets et explique les étapes d'accompagnement.",
+    technologies: ["Next.js", "React"],
+    learning:
+      "Dans un secteur visuel comme l'architecture, le portfolio et le récit des réalisations sont essentiels pour faire comprendre une démarche.",
+    introduction:
+      "INSPIRED DESIGN est un cabinet d'architecture basé à Cotonou. Son site présente son équipe, ses expertises et des projets réalisés au Bénin.",
+    context:
+      "Le contenu met en avant l'architecture, le design, l'urbanisme et l'innovation, avec des références, une présentation du processus et des moyens de contact.",
+    objective:
+      "Donner une vue d'ensemble du cabinet et permettre aux visiteurs de découvrir ses réalisations et de prendre rendez-vous.",
+    features: [
+      "Présentation du cabinet et de son fondateur",
+      "Présentation des expertises et services",
+      "Portfolio de projets architecturaux",
+      "Description des étapes, de la découverte à la livraison",
+      "Accès aux coordonnées et à la prise de rendez-vous",
+    ],
+    difficulties: [
+      "Organiser une offre étendue sans perdre la lisibilité du site",
+      "Faire cohabiter la présentation institutionnelle et les références visuelles",
+    ],
+    decisions: [
+      {
+        title: "Placer les réalisations au centre",
+        detail:
+          "Le portfolio présente des projets concrets et leurs informations pour illustrer le travail du cabinet.",
+      },
+    ],
+    learnings: [
+      "Structurer un site vitrine autour de plusieurs expertises",
+      "Utiliser les réalisations pour donner du contexte à une offre",
+    ],
+    demoUrl: "https://inspired-design-site.vercel.app/",
+    screenshots: ["/images/projects/inspired-design-1.jpg"],
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
