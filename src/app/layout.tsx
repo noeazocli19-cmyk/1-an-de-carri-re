@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s — Noé",
   },
   description:
-    "Portfolio de Noé, développeur Full-Stack et créateur de produits numériques. 1 an de parcours, 9+ projets réalisés, spécialisation backend autour de NestJS. Je construis des applications web, j'expérimente autour des SaaS et je partage ce que j'apprends.",
+    "Portfolio de Noé, développeur Full-Stack et créateur de produits numériques. 1 an de parcours, 11 projets réalisés, spécialisation backend autour de NestJS. Je construis des applications web, j'expérimente autour des SaaS et je partage ce que j'apprends.",
   keywords: [
     "Noé",
     "développeur full-stack",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Noé — Développeur Full-Stack · Créateur de produits numériques",
     description:
-      "1 an de parcours · 9+ projets réalisés. Je construis des applications web, j'expérimente autour des SaaS et me spécialise autour de NestJS.",
+      "1 an de parcours · 11 projets réalisés. Je construis des applications web, j'expérimente autour des SaaS et me spécialise autour de NestJS.",
     url: "https://noe.dev",
     siteName: "Noé — Portfolio",
     locale: "fr_FR",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Noé — Développeur Full-Stack · Créateur de produits numériques",
     description:
-      "1 an de parcours · 9+ projets réalisés. Spécialisation backend NestJS.",
+      "1 an de parcours · 11 projets réalisés. Spécialisation backend NestJS.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -90,7 +90,7 @@ const personJsonLd = {
   name: "Noé",
   jobTitle: "Développeur Full-Stack · Créateur de produits numériques",
   description:
-    "Développeur Full-Stack, 1 an de parcours, 9+ projets réalisés, spécialisation backend autour de NestJS.",
+    "Développeur Full-Stack, 1 an de parcours, 11 projets réalisés, spécialisation backend autour de NestJS.",
   knowsAbout: [
     "NestJS",
     "TypeScript",

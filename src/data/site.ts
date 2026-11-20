@@ -17,9 +17,9 @@ export const site = {
   startedOn: "Octobre 2025",
   stats: {
     years: "1 an",
-    projects: "9+",
+    projects: "11",
   },
   heroDescription:
     "Je construis des applications web, j'expérimente autour des SaaS et développe progressivement ma spécialisation autour de NestJS.",
-  proof: "1 an de parcours · 9+ projets réalisés",
+  proof: "1 an de parcours · 11 projets réalisés",
 } as const;
